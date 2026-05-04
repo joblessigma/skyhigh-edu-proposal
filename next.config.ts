@@ -8,13 +8,15 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  // Static export for GitHub Pages — unoptimized images required
   images: {
-    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
+    ],
   },
-  output: 'export',
-  // Required for GitHub Pages project site (https://joblessigma.github.io/skyhigh-edu-proposal/)
-  basePath: '/skyhigh-edu-proposal',
+  output: 'standalone',
   transpilePackages: ['motion'],
   webpack: (config, {dev}) => {
     // HMR is disabled in AI Studio via DISABLE_HMR env var.
